@@ -18,18 +18,18 @@ let entries: MapI2S = {};
 
 let nachnameIndex: number; // Nachname
 let vornameIndex: number; // Vorname
+let geschlechtIndex: number; // Geschlecht
+let geburtsjahrIndex: number; // Geburtsjahr
+let postleitzahlIndex: number; // Postleitzahl
+let mitgliedsnrIndex: number; // ADFC-Mitgliedsnummer
 let emailAdfcIndex: number; // Email-ADFC
 let emailPrivIndex: number; // Email-Privat
 let telefonIndex: number; // Telefon
 let telefonAltIndex: number; // Telefon-Alternative
 let agsIndex: number; // AGs
 let interessenIndex: number; // Interessen
-let adressenIndex: number; // Adresse
-let mitgliedsnrIndex: number; // ADFC-Mitgliedsnummer
 let lastFirstAidIndex: number; // Letztes Erste-Hilfe-Training
 let registriertIndex: number; // Registriert für Erste-Hilfe-Training
-let geschlechtIndex: number; // Geschlecht
-let geburtsjahrIndex: number; // Geburtsjahr 
 
 
 function main() {
@@ -37,7 +37,7 @@ function main() {
     let nrRows = aktDbSheet.getLastRow() - 1; // first row = headers
     let nrCols = aktDbSheet.getLastColumn();
     let rows = aktDbSheet.getRange(2, 1, nrRows, nrCols).getValues();
-    for (let row of rows) {
+    for (let row of rows.slice(0,4)) { // TODO
         sendeEmail(row);
     }
 }
@@ -69,35 +69,33 @@ function init() {
             aktDbSheet = sheet;
             nachnameIndex = sheetHeaders["Nachname"];
             vornameIndex = sheetHeaders["Vorname"];
+            geschlechtIndex = sheetHeaders["Geschlecht"];
+            geburtsjahrIndex = sheetHeaders["Geburtsjahr"];
+            postleitzahlIndex = sheetHeaders["Postleitzahl"];
+            mitgliedsnrIndex = sheetHeaders["ADFC-Mitgliedsnummer"];
             emailAdfcIndex = sheetHeaders["Email-ADFC"];
             emailPrivIndex = sheetHeaders["Email-Privat"];
             telefonIndex = sheetHeaders["Telefon"];
             telefonAltIndex = sheetHeaders["Telefon-Alternative"];
             agsIndex = sheetHeaders["AGs"];
             interessenIndex = sheetHeaders["Interessen"];
-            adressenIndex = sheetHeaders["Adresse"];
-            mitgliedsnrIndex = sheetHeaders["ADFC-Mitgliedsnummer"];
             lastFirstAidIndex = sheetHeaders["Letztes Erste-Hilfe-Training"];
             registriertIndex = sheetHeaders["Registriert für Erste-Hilfe-Training"];
-            geschlechtIndex = sheetHeaders["Geschlecht"];
-            geburtsjahrIndex = sheetHeaders["Geburtsjahr"];
-            Logger.log("nachnameIndex %s", nachnameIndex);
-            Logger.log("geburtsjahrIndex %s", geburtsjahrIndex);
 
             entries[nachnameIndex] = "entry.1985977124";
             entries[vornameIndex] = "entry.666565320";
+            entries[geschlechtIndex] = "entry.1638875874";
+            entries[geburtsjahrIndex] = "entry.931621781";
+            entries[postleitzahlIndex] = "entry.1777914664";
+            entries[mitgliedsnrIndex] = "entry.98896261";
             entries[emailAdfcIndex] = "entry.2076354113";
             entries[emailPrivIndex] = "entry.440890410";
             entries[telefonIndex] = "entry.329829470";
             entries[telefonAltIndex] = "entry.1481160666";
             entries[agsIndex] = "entry.1781476495";
             entries[interessenIndex] = "entry.1674515812";
-            entries[adressenIndex] = "entry.1777914664";
-            entries[mitgliedsnrIndex] = "entry.98896261";
             entries[lastFirstAidIndex] = "entry.1254417615";
             entries[registriertIndex] = "entry.285304371";
-            entries[geschlechtIndex] = "entry.1638875874";
-            entries[geburtsjahrIndex] = "entry.931621781";
             // entries[] = "entry.273898972"; // Einverstanden
             // entries[] = "entry.2103848384"; // Aktiv
         } 
@@ -121,8 +119,8 @@ function sendeEmail(row: Array<string>) {
     Logger.log("Keine Email Adresse für " + vorname + " " + nachname);
     return;
   }
-  // Logger.log("emailTo=" + emailTo);
-  if (emailTo.indexOf("michael.uhl") < 0) return;
+  Logger.log("emailTo=" + emailTo);
+  emailTo = "michael.uhlenberg@adfc-muenchen.de"; // TODO
 
   let templateFile = "email.html";
 
@@ -156,7 +154,7 @@ function any2Str(val: any): string {
 function row2Params(row: Array<string>) {
     let params = [];
     for (let idx = 1; idx <= row.length; idx++) {
-        if (idx > geburtsjahrIndex) continue; 
+        if (idx > registriertIndex) continue; 
         let v = row[idx-1];
         if (isEmpty(v)) continue;
         Logger.log("row[%s] = %s %s", idx, v, typeof v);
@@ -173,8 +171,8 @@ function row2Params(row: Array<string>) {
             }
         } else if (idx == lastFirstAidIndex) { // v = date
             params.push("&" + entries[idx] + "=" + any2Str(v));
-        } else { // v = simple string param
-            v = v.trim();
+        } else { // v = simple string or number param
+            if (typeof v != "number") v = v.trim();
             params.push("&" + entries[idx] + "=" + encodeURIComponent(v));
         }     
     }
@@ -183,12 +181,11 @@ function row2Params(row: Array<string>) {
     return res;
 } 
 
-let verifLink = "https://docs.google.com/forms/d/e/1FAIpQLSdh7q00OHbeQdJ1ZMEy_LhXRPnMT3TJw-TeWcsVjZboWwJ2zA/viewform?usp=pp_url&entry.1985977124=Nach+Name&entry.666565320=Vor+Name&entry.2076354113=email@adfc-muenchen.de&entry.440890410=email@t-online.de&entry.329829470=1234567&entry.1481160666=7654321&entry.1781476495=AG+Aktionen&entry.1781476495=AG+Asyl&entry.1781476495=Fundraising&entry.1674515812=Erstens+saufen,+zweitens+fressen&entry.1777914664=Kleine+Strasse+1,+34567+Klein-Kleckersdorf&entry.98896261=23456789&entry.1254417615=2017-01-08&entry.285304371=ja/nein&entry.1638875874=M&entry.931621781=1999&entry.273898972=Ja&entry.2103848384=Ja";
 
 let verifLinkUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdh7q00OHbeQdJ1ZMEy_LhXRPnMT3TJw-TeWcsVjZboWwJ2zA/viewform?usp=pp_url"
-let verifLinkParams = "&entry.1985977124=Nach Name&entry.666565320=Vor Name&entry.2076354113=email@adfc-muenchen.de&entry.440890410=email@t-online.de&entry.329829470=1234567&entry.1481160666=7654321&entry.1781476495=AG Aktionen&entry.1781476495=AG Asyl&entry.1781476495=AG Codierung&entry.1781476495=AG Infoladen&entry.1781476495=AG IT&entry.1781476495=AG Leitungen&entry.1781476495=AG Mehrtagestouren&entry.1781476495=AG Navigation&entry.1781476495=AG Radfahrschule&entry.1781476495=AG Rikscha&entry.1781476495=AG Tagestouren&entry.1781476495=AG Tandem&entry.1781476495=AG Technik&entry.1781476495=AG Verkehr&entry.1781476495=Event Team&entry.1781476495=Fundraising&entry.1674515812=Erstens saufen, zweitens fressen&entry.1777914664=Kleine Straße 1, 34567 Klein-Kleckersdorf&entry.98896261=23456789&entry.1254417615=2017-01-08&entry.285304371=ja/nein&entry.1638875874=M&entry.931621781=1999&entry.273898972=Ja&entry.2103848384=Ja";
 
 /*
+let verifLink = "https://docs.google.com/forms/d/e/1FAIpQLSdh7q00OHbeQdJ1ZMEy_LhXRPnMT3TJw-TeWcsVjZboWwJ2zA/viewform?usp=pp_url&entry.1985977124=Nach+Name&entry.666565320=Vor+Name&entry.2076354113=email@adfc-muenchen.de&entry.440890410=email@t-online.de&entry.329829470=1234567&entry.1481160666=7654321&entry.1781476495=AG+Aktionen&entry.1781476495=AG+Asyl&entry.1781476495=Fundraising&entry.1674515812=Erstens+saufen,+zweitens+fressen&entry.1777914664=Kleine+Strasse+1,+34567+Klein-Kleckersdorf&entry.98896261=23456789&entry.1254417615=2017-01-08&entry.285304371=ja/nein&entry.1638875874=M&entry.931621781=1999&entry.273898972=Ja&entry.2103848384=Ja";
 
 https://docs.google.com/forms/d/e/1FAIpQLSdh7q00OHbeQdJ1ZMEy_LhXRPnMT3TJw-TeWcsVjZboWwJ2zA/viewform
 ?usp=pp_url
