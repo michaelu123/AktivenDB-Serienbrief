@@ -12,9 +12,14 @@ interface HeaderMap {
 }
 
 let inited = false;
+let phase = 1;
+let total = 0;
+let antworten = 0;
+let emails = 0;
 let headers: HeaderMap = {};
 let aktDbSheet: GoogleAppsScript.Spreadsheet.Sheet;
 let entries: MapI2S = {};
+let antwortMap: MapS2I = {};
 
 let nachnameIndex: number; // Nachname
 let vornameIndex: number; // Vorname
@@ -37,9 +42,10 @@ function main() {
     let nrRows = aktDbSheet.getLastRow() - 1; // first row = headers
     let nrCols = aktDbSheet.getLastColumn();
     let rows = aktDbSheet.getRange(2, 1, nrRows, nrCols).getValues();
-    for (let row of rows.slice(0,4)) { // TODO
+    for (let row of rows) { 
         sendeEmail(row);
     }
+    Logger.log("total %d antworten %d emails %d", total, antworten, emails);
 }
 
 
@@ -55,6 +61,7 @@ function init() {
         let sheetName = sheet.getName();
         let sheetHeaders: MapS2I = {};
         Logger.log("sheetName %s", sheetName);
+        if (sheetName != "AktivenDB" && sheetName != "Formularantworten 1") continue;
         headers[sheetName] = sheetHeaders;
         let numCols = sheet.getLastColumn();
         Logger.log("numCols %s", numCols);
@@ -65,7 +72,7 @@ function init() {
             if (isEmpty(v)) continue;
             sheetHeaders[v] = i + 1;
         }
-        if (sheet.getName() == "AktivenDB") {
+        if (sheetName == "AktivenDB") {
             aktDbSheet = sheet;
             nachnameIndex = sheetHeaders["Nachname"];
             vornameIndex = sheetHeaders["Vorname"];
@@ -99,12 +106,44 @@ function init() {
             // entries[] = "entry.273898972"; // Einverstanden
             // entries[] = "entry.2103848384"; // Aktiv
         } 
+        if (sheetName == "Formularantworten 1") { 
+            let nrRows = sheet.getLastRow() - 1; // first row = headers
+            let rows = sheet.getRange(2, 1, nrRows, 3).getValues();
+            for (let row of rows) { 
+              let name = row[1].trim() + "," + row[2].trim(); // Nachname,Vorname
+              if (antwortMap[name]) {
+                antwortMap[name] = antwortMap[name] + 1;
+              } else {
+                antwortMap[name] = 1; // Nachname,Vorname
+              }
+            }
+            // antwortMap.size() returns always 0!
+            // https://stackoverflow.com/questions/54518951/how-to-find-the-size-of-map-in-javascript
+            let sz = 0;
+            for (const k in antwortMap) {
+              sz += 1;
+              let v = antwortMap[k];
+              if (v > 1) {
+                Logger.log("duplicate antwort %s: %d", k, v);
+              }
+            } 
+            Logger.log("size antwortMap %d", sz);
+        }
     }
 }
 
 function sendeEmail(row: Array<string>) {
-  let vorname = row[vornameIndex-1];
-  let nachname = row[nachnameIndex-1];
+  let vorname = row[vornameIndex-1].trim();
+  let nachname = row[nachnameIndex-1].trim();
+
+  total++;
+  let name = nachname + "," + vorname;
+  if (antwortMap[name]) {
+    Logger.log("Antwort %s", name);
+    antworten++;
+    return;   
+  }
+
   let emailTo1 = row[emailAdfcIndex-1];
   let emailTo2 = row[emailPrivIndex-1];
   let emailTo = "";
@@ -119,8 +158,10 @@ function sendeEmail(row: Array<string>) {
     Logger.log("Keine Email Adresse für " + vorname + " " + nachname);
     return;
   }
-  Logger.log("emailTo=" + emailTo);
-  emailTo = "michael.uhlenberg@adfc-muenchen.de"; // TODO
+  Logger.log("emailTo %s = %s", name, emailTo);
+
+  emails++;
+  if (phase == 1) return;
 
   let templateFile = "email.html";
 
@@ -135,7 +176,7 @@ function sendeEmail(row: Array<string>) {
   let options = {
     htmlBody: htmlText,
     name: "ADFC München e.V.",
-    replyTo: "info@adfc-muenchen.de",
+    replyTo: "aktive@adfc-muenchen.de",
   };
   GmailApp.sendEmail(emailTo, subject, textbody, options);
 }
@@ -181,8 +222,10 @@ function row2Params(row: Array<string>) {
     return res;
 } 
 
-
-let verifLinkUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdh7q00OHbeQdJ1ZMEy_LhXRPnMT3TJw-TeWcsVjZboWwJ2zA/viewform?usp=pp_url"
+// URL of user aktive:
+let verifLinkUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfDjK7m42eofskS164D2qTj8e-7ngHZeoiSgwsMWzB-AG-xfA/viewform?usp=pp_url";
+// URL of user mu:
+// let verifLinkUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdh7q00OHbeQdJ1ZMEy_LhXRPnMT3TJw-TeWcsVjZboWwJ2zA/viewform?usp=pp_url"
 
 /*
 let verifLink = "https://docs.google.com/forms/d/e/1FAIpQLSdh7q00OHbeQdJ1ZMEy_LhXRPnMT3TJw-TeWcsVjZboWwJ2zA/viewform?usp=pp_url&entry.1985977124=Nach+Name&entry.666565320=Vor+Name&entry.2076354113=email@adfc-muenchen.de&entry.440890410=email@t-online.de&entry.329829470=1234567&entry.1481160666=7654321&entry.1781476495=AG+Aktionen&entry.1781476495=AG+Asyl&entry.1781476495=Fundraising&entry.1674515812=Erstens+saufen,+zweitens+fressen&entry.1777914664=Kleine+Strasse+1,+34567+Klein-Kleckersdorf&entry.98896261=23456789&entry.1254417615=2017-01-08&entry.285304371=ja/nein&entry.1638875874=M&entry.931621781=1999&entry.273898972=Ja&entry.2103848384=Ja";
