@@ -15,6 +15,7 @@ let inited = false;
 let phase = 1;
 let total = 0;
 let antworten = 0;
+let inaktiv = 0;
 let emails = 0;
 let headers: HeaderMap = {};
 let aktDbSheet: GoogleAppsScript.Spreadsheet.Sheet;
@@ -35,6 +36,7 @@ let agsIndex: number; // AGs
 let interessenIndex: number; // Interessen
 let lastFirstAidIndex: number; // Letztes Erste-Hilfe-Training
 let registriertIndex: number; // Registriert für Erste-Hilfe-Training
+let aktivIndex: number; // Aktiv
 
 
 function main() {
@@ -45,7 +47,7 @@ function main() {
     for (let row of rows) { 
         sendeEmail(row);
     }
-    Logger.log("total %d antworten %d emails %d", total, antworten, emails);
+    Logger.log("total %d antworten %d inaktiv %d emails %d", total, antworten, inaktiv, emails);
 }
 
 
@@ -88,6 +90,7 @@ function init() {
             interessenIndex = sheetHeaders["Interessen"];
             lastFirstAidIndex = sheetHeaders["Letztes Erste-Hilfe-Training"];
             registriertIndex = sheetHeaders["Registriert für Erste-Hilfe-Training"];
+            aktivIndex = sheetHeaders["Aktiv"]
 
             entries[nachnameIndex] = "entry.1985977124";
             entries[vornameIndex] = "entry.666565320";
@@ -141,6 +144,11 @@ function sendeEmail(row: Array<string>) {
   if (antwortMap[name]) {
     Logger.log("Antwort %s", name);
     antworten++;
+    return;   
+  }
+  if (row[aktivIndex] == "FALSCH") {
+    Logger.log("Inaktiv %s", name);
+    inaktiv++;
     return;   
   }
 
@@ -212,6 +220,8 @@ function row2Params(row: Array<string>) {
             }
         } else if (idx == lastFirstAidIndex) { // v = date
             params.push("&" + entries[idx] + "=" + any2Str(v));
+        } else if (idx == telefonIndex || idx == telefonAltIndex) { // v = string, remove blank,-
+            params.push("&" + entries[idx] + "=" + any2Str(v).replace(/[\s-]/g, ""));
         } else { // v = simple string or number param
             if (typeof v != "number") v = v.trim();
             params.push("&" + entries[idx] + "=" + encodeURIComponent(v));
