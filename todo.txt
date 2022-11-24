@@ -1,0 +1,306 @@
+12:47:42	Info	duplicate antwort Annetzberger,Michael: 2.0
+12:47:42	Info	duplicate antwort Werner,Christine: 2.0
+12:47:42	Info	duplicate antwort Prieto,Yvonne: 2.0
+12:47:42	Info	duplicate antwort Schüler,Hartmut: 2.0
+12:47:42	Info	size antwortMap 154.0
+12:47:42	Info	sheetName AktivenDB
+12:47:42	Info	numCols 15.0
+12:47:42	Info	sheetName AktivenDB row1 [[Nachname, Vorname, Geschlecht, Geburtsjahr, Postleitzahl, ADFC-Mitgliedsnummer, Email-ADFC, Email-Privat, Email, Telefon, Telefon-Alternative, AGs, Interessen, Letztes Erste-Hilfe-Training, Registriert für Erste-Hilfe-Training]]
+12:47:42	Info	emailTo Abels,Gertrud = g.abels@gmx.net
+12:47:42	Info	Antwort Anderski,Felix
+12:47:42	Info	Antwort Annetzberger,Michael
+12:47:42	Info	emailTo Auburger,Auburger = auburger.christina@gmail.com
+12:47:42	Info	Antwort Bader,Gabriele
+12:47:42	Info	emailTo Bandorf,Matthias = matthias.bandorf@web.de
+12:47:42	Info	emailTo Barsekow,Geli = geli.barsekow@gmail.com
+12:47:42	Info	emailTo Baumgartner,Helmut = helmutbaumgartner@gmx.de
+12:47:42	Info	emailTo Becker,Daniela = post@daniela-Becker.de
+12:47:42	Info	Antwort Becker,Wolfgang
+12:47:42	Info	emailTo Beichl,Christiane = bernhard_chris@gmx.de
+12:47:42	Info	emailTo Benda,Günther = guenther.benda@t-online.de
+12:47:42	Info	Antwort Benedikter,Julia
+12:47:42	Info	Antwort Binder,Angelika
+12:47:42	Info	emailTo Binder,Harald = haraldbinder@me.com
+12:47:42	Info	Antwort Bosch,Stefan
+12:47:42	Info	emailTo Boscher,Andi = andi.boscher@adfc-muenchen.de,andi.boscher@t-online.de
+12:47:42	Info	Antwort Botschen,Thorsten
+12:47:42	Info	emailTo Braitsch,Brigitte = brigitte.braitsch@muenchen.de
+12:47:42	Info	emailTo Brischwein,Martin = brischwein@tum.de
+12:47:42	Info	emailTo Broekmate,Jan = jbrm@gmx.de
+12:47:42	Info	emailTo Brugger,Roman = roman.brugger@spd-planegg.de
+12:47:42	Info	Antwort Burschik,Robert
+12:47:42	Info	Antwort Böwing,Detlef
+12:47:42	Info	emailTo Campbell,Tania = tania.campbell@bayern-mail.de
+12:47:42	Info	emailTo Chmiel,Rüdiger = ruediger.chmiel@adfc-muenchen.de,gernstl@my.mail.de
+12:47:42	Info	emailTo Cordes,Gregor = tandem@adfc-muenchen.de
+12:47:42	Info	emailTo Curan,Eva S. = es.curran@t-online.de
+12:47:42	Info	Antwort Czaja,Gerhard
+12:47:42	Info	Antwort Danner,Susi
+12:47:42	Info	Antwort Danninger,Peter
+12:47:42	Info	emailTo Decker,Josef = Josef.Decker@gmx.net
+12:47:42	Info	Antwort Decker,Ursula
+12:47:42	Info	Antwort Deingruber,Maria
+12:47:42	Info	emailTo Demarczyk,Christoph = cdemarczyk@arcor.de
+12:47:42	Info	Antwort Dietz,Markus
+12:47:42	Info	Antwort Drewianka,Antje
+12:47:42	Info	emailTo Dölling,Jakob = jakob.doelling@munichways.com
+12:47:42	Info	Antwort Dürr,Henriette
+12:47:42	Info	emailTo Eberle,Andrea = andrea.eberle@adfc-muenchen.de
+12:47:42	Info	emailTo Eberle,Max = max.h.eberle@freenet.de
+12:47:42	Info	emailTo Edmüller,Thomas = thomas.edmueller@adfc-muenchen.de,thomas.edmueller@gmx.de
+12:47:42	Info	emailTo Egerer,Arnold = arnold.egerer@web.de
+12:47:42	Info	emailTo Eigenseher,Beate = beate.eigenseher@t-online.de
+12:47:42	Info	Antwort Eller,Bernhard
+12:47:42	Info	Antwort Enders,Werner
+12:47:42	Info	Antwort Endraß,Norbert
+12:47:42	Info	Antwort Erley,Carsten
+12:47:42	Info	Antwort Fahnberg,Christian
+12:47:42	Info	Antwort Fandrich,Thomas
+12:47:42	Info	Antwort Fehrenbach,Michaela
+12:47:42	Info	Antwort Feldner,Martin
+12:47:42	Info	emailTo Feldtkeller,Anna = anna.feldtkeller@adfc-muenchen.de
+12:47:42	Info	emailTo Felsch,Bernadette = bernadette.felsch@adfc-muenchen.de
+12:47:42	Info	Antwort Fendt,Klaus
+12:47:42	Info	emailTo Feneberg,Markus = feneberg.markus@gmail.com
+12:47:42	Info	Antwort Feyer,Cornelia
+12:47:42	Info	Antwort Filss,Christine
+12:47:42	Info	Antwort Fischer,Franz
+12:47:42	Info	Antwort Fischer-Speck,Petra
+12:47:42	Info	Antwort Freundel,Elisabeth
+12:47:42	Info	emailTo Frommholz,R = rfrommholz@web.de
+12:47:42	Info	Antwort Galles,Dieter
+12:47:42	Info	emailTo Gandesberger,Manfred = manfred.gandenberger@online.de
+12:47:42	Info	emailTo Gebhardt,Christian = chrissi.g@sdtnet.de
+12:47:42	Info	Antwort Geis,Maria
+12:47:42	Info	Antwort Geis,Vera
+12:47:42	Info	emailTo Gemke,Jochen = jochen.gemke@gmx.de
+12:47:42	Info	emailTo Genzler,Ulrich = ulrich.genzler@t-online.de
+12:47:42	Info	Antwort Glas,Martin
+12:47:42	Info	emailTo Glück,Josef = glueck@aktiv-in-bayern.de
+12:47:42	Info	emailTo Graf,Robert = robert-graf@web.de,robert-graf@web.de
+12:47:42	Info	Antwort Groh,Eckhart
+12:47:42	Info	Antwort Gross,Uwe
+12:47:42	Info	emailTo Gross,Wolfgang = wolf-gross@posteo.de
+12:47:42	Info	emailTo Gränzer,Rainer = rainer.graenzer@t-online.de
+12:47:42	Info	emailTo Gural,Peter = peter.gural@t-online.de
+12:47:42	Info	emailTo Göbel,Karl = karl.goebelu@gmx.de
+12:47:42	Info	emailTo Görlich,Elisabeth = elisabeth.goerlich@web.de
+12:47:42	Info	emailTo Haake,Uwe = Uhaake@gmx.de
+12:47:42	Info	emailTo Haas,Bernhard = bernhard.haas@adfc-muenchen.de,roskoeckre@aol.com
+12:47:42	Info	emailTo Haas,Dieter = dwhaas@t-online.de
+12:47:42	Info	Antwort Haas,Norbert
+12:47:42	Info	Antwort Haberland,Volker
+12:47:42	Info	emailTo Hagedorn,Ursula = uhag@gmx.net
+12:47:42	Info	emailTo Hagenguth,Eike = eike.hagenguth@web.de
+12:47:42	Info	emailTo Harder,Erika = erikaharder@freenet.de
+12:47:42	Info	Antwort Hartl,Christian
+12:47:42	Info	Antwort Hartmann,Jürgen
+12:47:42	Info	Antwort Hattendorf,Anton
+12:47:42	Info	emailTo Hauck,Ulrich = hauck.ulrich@yahoo.de
+12:47:42	Info	emailTo Hegler,Justin = jastonbiketour@gmail.com
+12:47:42	Info	emailTo Helsper,Peter = peter.helsper@web.de
+12:47:42	Info	emailTo Henning,Reinhard? = henning@das-byro.de
+12:47:42	Info	Antwort Heß,Ingeborg
+12:47:42	Info	Antwort Hines,Andrew
+12:47:42	Info	emailTo Hirschberg,Uta = uta.hirschberg@gruen-neuried.de
+12:47:42	Info	Antwort Hoffmann,Karin
+12:47:42	Info	emailTo Hofmann,Rita = hofmann.rita@gmx.de
+12:47:42	Info	Antwort Hopfmüller,Christian Nikolaus
+12:47:42	Info	emailTo Hover,Marcellinus = m.hover@outlook.com
+12:47:42	Info	Antwort Hälsig,Michael
+12:47:42	Info	Antwort Händel,Burkhard
+12:47:42	Info	emailTo Hänel,Erwin = erwin.haenel@adfc-muenchen.de,Erwin.Haenel@gmx.de
+12:47:42	Info	emailTo Härtl,Wolfgang = wolfgang@haertl-muenchen.de
+12:47:42	Info	emailTo Häusler,Thomas = thomas2610@web.de
+12:47:42	Info	Keine Email Adresse für Harald Höfer
+12:47:42	Info	Keine Email Adresse für Renate Höfer-Zygan
+12:47:42	Info	Antwort Hülle,Wolfgang
+12:47:42	Info	emailTo Idek,Ingolf = idimuc@arcor.de
+12:47:42	Info	emailTo Isenmann,Ewald = ewald.isenmann@isenmann-stb.de
+12:47:42	Info	Antwort Jakob,Andreas
+12:47:42	Info	emailTo Jakobi,Silke = jakobi.silke@web.de
+12:47:42	Info	emailTo Jandow,Familie = fam.jandow@gmail.com
+12:47:42	Info	Antwort Klein,Michael
+12:47:42	Info	emailTo Klemencic,Leo = leo.klemencic@outlook.de
+12:47:42	Info	Keine Email Adresse für Andreas Knatz
+12:47:42	Info	emailTo Koller,Elfgard = elfgard.koller@adfc-muenchen.de,elfgard333@gmx.de
+12:47:42	Info	Antwort Koppen,Jörg
+12:47:42	Info	Antwort Krahmer,Lotar
+12:47:42	Info	emailTo Kramschuster,Ellen = richard.kramschuster@media-broadcast.com
+12:47:42	Info	Antwort Kramschuster,Richard
+12:47:42	Info	Antwort Kraus,Anton
+12:47:42	Info	emailTo Kraus,Gunda = gunda.kraus@gmx.de
+12:47:42	Info	Antwort Kring,Gerhard
+12:47:42	Info	emailTo Kuck,Achim = achim.kuck@gmx.de,achim.kuck@gmx.de
+12:47:42	Info	emailTo Kurzke,Jörg = jorgkurzke@gmail.com
+12:47:42	Info	emailTo Kuscher,Helmut = internet.hk@posteo.de
+12:47:42	Info	emailTo Kümmerle,Kathrin = katrin.kuemmerle@gmx.de
+12:47:42	Info	emailTo Lachenmaier,Michael = michael.lachenmaier@gmail.com
+12:47:42	Info	Antwort Lankes,Holger
+12:47:42	Info	emailTo Laurer,Rainald = rainald.laurer@adfc-muenchen.de
+12:47:42	Info	Antwort Lekies-Wiech,Anja
+12:47:42	Info	emailTo Linbergs,Klaus = klaus@linbergs.de
+12:47:42	Info	Antwort Linden,Joachim
+12:47:42	Info	emailTo Lindner,Antje = antjelindner1@gmx.net
+12:47:42	Info	Antwort Linke,Uwe
+12:47:42	Info	emailTo Lipsky,Rina = kristallglas@live.de
+12:47:42	Info	emailTo Löb,Simona = milkorsugar.sl@gmail.com
+12:47:42	Info	emailTo Lürken,Ernst = ernst.luerken@adfc-muenchen.de
+12:47:42	Info	emailTo Lüttel,Claudia = clalue@yahoo.de
+12:47:42	Info	emailTo Maier,Franziska = franziska_maier@gmx.net
+12:47:42	Info	Antwort Mair,Thomas
+12:47:42	Info	emailTo Manhart,Tina = tina.manhart@gmx.de
+12:47:42	Info	emailTo Markl,Margit = margit.markl@spd-oberhaching.de
+12:47:42	Info	emailTo Martin,Hans-Georg = h-g-martin@gmx.de
+12:47:42	Info	emailTo Mattiuzzo,Giorgio = giorgio_mattiuzzo@yahoo.it
+12:47:42	Info	emailTo Meding,Manfred = manfredf.meding@gmail.com
+12:47:42	Info	Antwort Meerwald,Petra
+12:47:42	Info	Keine Email Adresse für Dieter Meier
+12:47:42	Info	emailTo Meier,Uli = uli@meier-tkn.de
+12:47:42	Info	Antwort Meincke,Inga
+12:47:42	Info	emailTo Meyer,Thomas = thomas.chr.meyer@web.de
+12:47:42	Info	emailTo Meyer,Tim = t.c.meyer@web.de
+12:47:42	Info	emailTo Mol,Ronald = ronald.a.mol@gmail.com
+12:47:42	Info	Antwort Moseler,Hermann
+12:47:42	Info	Antwort Muthig,Regina
+12:47:42	Info	emailTo Mächtel,Renate = renatemaechtel@gmail.com
+12:47:42	Info	Antwort Mück,Jürgen
+12:47:42	Info	Antwort Müller,Andreas
+12:47:42	Info	Antwort Müller,Dietrich
+12:47:42	Info	emailTo Naisar,Rudi = naisarrudi@t-online.de
+12:47:42	Info	emailTo Neubauer,Karin = Karin.Neubauer@adfc-muenchen.de
+12:47:42	Info	Antwort Neumüller,Matthias
+12:47:42	Info	Antwort Neunhoeffer,Tilman
+12:47:42	Info	emailTo Niedermeier,Peter = penidei@gmx.de
+12:47:42	Info	Antwort Nies,Thomas
+12:47:42	Info	Antwort Nitsche,Georg
+12:47:42	Info	emailTo Nusselt,Ulrich = uli@uli-nusselt.de
+12:47:42	Info	Antwort Nußstein,Hans
+12:47:42	Info	Antwort Nüßle,Werner
+12:47:42	Info	emailTo Obermeier,Klaus = klaus@magenta33.de
+12:47:42	Info	emailTo Offermann,Tore = tore.offermann@adfc-muenchen.de
+12:47:42	Info	Keine Email Adresse für Dieter ? Opatril
+12:47:42	Info	emailTo P.,Dietmar = dietmarp@permondes.de
+12:47:42	Info	Antwort Pawaserat,Thomas
+12:47:42	Info	Antwort Petri,Klaus
+12:47:42	Info	Antwort Philipp,Jos
+12:47:42	Info	Antwort Pitzing,Stephan
+12:47:42	Info	Antwort Plöckl,Manfred
+12:47:42	Info	emailTo Prata,Anca = teodoraprata@yahoo.com
+12:47:42	Info	Antwort Prieto,Yvonne
+12:47:42	Info	Antwort Prinz,Svetlana
+12:47:42	Info	Keine Email Adresse für Matthias Rajmann
+12:47:42	Info	Antwort Rajovic,Iva
+12:47:42	Info	Antwort Rautenberg,Frank
+12:47:42	Info	emailTo Reinhard,Henning = henning.reinhard@t-online.de
+12:47:42	Info	emailTo Reinhard-Meier,Ingrid = ingrid.reinhart@gmail.com
+12:47:42	Info	emailTo Reinhard; Henning,Reinhard; Henning = henning.reinhard@t-online.de
+12:47:42	Info	Keine Email Adresse für Klaus Reinthaler
+12:47:42	Info	Antwort Reisch,Hannelore
+12:47:42	Info	emailTo Reitinger,Irmi = reitinger@gmx.net
+12:47:42	Info	emailTo Remm,Peter = peter.remm@adfc-muenchen.de
+12:47:42	Info	emailTo Reuss,Philipp = phil@reusz.eu
+12:47:42	Info	Antwort Riemann,Birgit
+12:47:42	Info	emailTo Rigon,Bruno = brunorigon@alice-dsl.net
+12:47:42	Info	emailTo Ritzert,Gerhard = gwr40@t-online.de
+12:47:42	Info	emailTo Roch,Denis = roch@mytum.de
+12:47:42	Info	emailTo Roth,Richard = richard-roth@t-online.de
+12:47:42	Info	Antwort Rupp,Hermann
+12:47:42	Info	Antwort Rusche,Frank
+12:47:42	Info	Antwort Röth,Lothar
+12:47:42	Info	emailTo Sampels,Rolf = rolf@sampels.net
+12:47:42	Info	Antwort Sangl,Angelika
+12:47:42	Info	emailTo Sauer,Cornelia = cornelia.sauer@maxi-dsl.de
+12:47:42	Info	Antwort Scheppach,Anton
+12:47:42	Info	emailTo Schildt,Waltraut = waltraud.schild@t-online.de
+12:47:42	Info	Keine Email Adresse für Eberhard Schirwitz
+12:47:42	Info	Antwort Schlesinger,Rolf
+12:47:42	Info	Antwort Schmalz,Monika
+12:47:42	Info	emailTo Schmid,Maximilian = maximilian.schmid@adfc-muenchen.de,mightymeks@gmail.com
+12:47:42	Info	emailTo Schmidt,Ernst = enne.schmidt@t-online.de
+12:47:42	Info	emailTo Schmidt,Henry = henry.schmidt@adfc-muenchen.de,henry@schmidt-ghm.de
+12:47:42	Info	Keine Email Adresse für Michael Schmidt
+12:47:42	Info	Antwort Schnabel,Angela
+12:47:42	Info	Antwort Schneck,Werner
+12:47:42	Info	emailTo Schnell,Martin = martin.schnell@gmail.com
+12:47:42	Info	Antwort Scholz,Heike
+12:47:42	Info	emailTo Scholz,Stephanie = stephanie_scholz89@gmx.de
+12:47:42	Info	Antwort Schossig,Christian
+12:47:42	Info	Keine Email Adresse für Jens Schröder
+12:47:42	Info	Antwort Schröder,Tanja
+12:47:42	Info	Antwort Schubert,Thomas
+12:47:42	Info	Antwort Schulz,Dorothea
+12:47:42	Info	emailTo Schwarz,Elfriede = elfriede_schwarz@t-online.de
+12:47:42	Info	emailTo Schwarz,Gerhard = schwarzgerhard@gmx.de
+12:47:42	Info	Antwort Schwarz,Günter
+12:47:42	Info	emailTo Schwarz,Martha = martha.schwarz@gmx.net
+12:47:42	Info	Antwort Schweiger,Helmut
+12:47:42	Info	Antwort Schweiger,Waltraut
+12:47:42	Info	Antwort Schwindt,Matthias
+12:47:42	Info	emailTo Schäfer,Klaus = k_schaefer@web.de
+12:47:42	Info	Antwort Schäfer,Paul-Helmut
+12:47:42	Info	Antwort Schön,Andreas
+12:47:42	Info	Antwort Schön,Anke
+12:47:42	Info	emailTo Schönerstedt,Carsten = Naebe@web.de
+12:47:42	Info	Antwort Schüler,Hartmut
+12:47:42	Info	Antwort Seitz,Bernd
+12:47:42	Info	emailTo Senn, = m.senn@gmx.de
+12:47:42	Info	Antwort Simmler,Ralph
+12:47:42	Info	Antwort Sommer,Robert
+12:47:42	Info	Antwort Spiegl,Heidi
+12:47:42	Info	emailTo Spillmann,Reinhard = reinhard.spillmann@t-online.de
+12:47:42	Info	emailTo Spital,Martin = spitaler@naturfun.de
+12:47:42	Info	Antwort Sprey,Christian
+12:47:42	Info	emailTo Staudinger,Klaus = info@staudinger-online.de
+12:47:42	Info	Antwort Steiger,Renate
+12:47:42	Info	emailTo Stein,Gaby = gabst@web.de
+12:47:42	Info	emailTo Steinhauser,Maximilian = maximilian.steinhauser@adfc-muenchen.de
+12:47:42	Info	emailTo Steinmetz,Alexander = steinzalex@gmail.com
+12:47:42	Info	emailTo Sterr,Anna = anna.sterr@maxi-dsl.de
+12:47:42	Info	emailTo Steuer,Wilfried = steuer.kw@gmail.com
+12:47:42	Info	emailTo Stiller,Norbert = norbert.stiller@t-online.de
+12:47:42	Info	emailTo Straub,Monika = mowast@aol.com
+12:47:42	Info	Antwort Strobl,Barbara
+12:47:42	Info	Antwort Stöcklein,Friedrich
+12:47:42	Info	Antwort Störringer,Hans
+12:47:42	Info	emailTo Stürner,Lienhard = stuerner.planegg@t-online.de
+12:47:42	Info	emailTo Thomas,Jean-Chaques = thomasjcj@onlinethomas.de
+12:47:42	Info	Antwort Tollkühn,Martina
+12:47:42	Info	Antwort Tortora,Amedeo
+12:47:42	Info	Antwort Treyer,Thomas
+12:47:42	Info	Antwort Treyer,Uta
+12:47:42	Info	emailTo Trostl,Christian = christiantrostl@gmail.com
+12:47:42	Info	Antwort Uhlenberg,Michael
+12:47:42	Info	Antwort Vetter,Josef
+12:47:42	Info	Antwort Viehl,Andreas
+12:47:42	Info	emailTo Volkmer,Anna = annanas@t-online.de
+12:47:42	Info	emailTo Völkl,Monika = monikavoelkl@web.de
+12:47:42	Info	Antwort Wagner,Antje
+12:47:42	Info	emailTo Wagner,Regine = Wagner.Regina@gmx.de
+12:47:42	Info	Antwort Walz,Andreas
+12:47:42	Info	Antwort Wambach,Jürgen
+12:47:42	Info	emailTo Wassermann,Edith = edith.wassermann@t-online.de
+12:47:42	Info	Antwort Waterstradt,Piter
+12:47:42	Info	emailTo Weber,Barbara = bdeanweber@gmx.de
+12:47:42	Info	emailTo Weichert,Lothar = L.Weichert@web.de
+12:47:42	Info	emailTo Wendel,Rigas = rigas.wendel@adfc-muenchen.de,rigasw@gmail.com
+12:47:42	Info	Antwort Werner,Christine
+12:47:42	Info	emailTo Widmann,Anne = anne.widmann@t-online.de
+12:47:42	Info	Antwort Wiedemann,Astrid
+12:47:42	Info	Antwort Wiedemann,Nikolaus
+12:47:42	Info	emailTo Wiegang,Georg = georg.wiegand@adfc-muenchen.de
+12:47:42	Info	Antwort Wimmer,Robert
+12:47:42	Info	emailTo Winkler,Michael = michael.winkler@adfc-muenchen.de
+12:47:42	Info	Antwort Wittmann,Brigitte
+12:47:42	Info	Antwort Wittmann,Erich
+12:47:42	Info	emailTo Wuthenow Beischl,Rudolf = wuthenow@live.de
+12:47:42	Info	Antwort Zibull,Carsten
+12:47:42	Info	Antwort Zimmerman,Uwe
+12:47:42	Info	Antwort Zwerger,Karl
+12:47:42	Info	emailTo Zwez,Maximilian = maximilian.zwez@adfc-muenchen.de
+12:47:42	Info	emailTo de Bellabre,Myriam = myriamski@web.de
+12:47:42	Info	emailTo v. Einem Carl,v. Einem Carl = carl@einem.net
+12:47:42	Info	Antwort v. Necker,Lebrecht
+12:47:42	Info	emailTo v. Welck,Nikolaus = nwelck123@gmail.com
+12:47:42	Info	Antwort v. Zehmen,Frank
+12:47:42	Info	total 297.0 antworten 139.0 emails 148

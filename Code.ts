@@ -19,8 +19,10 @@ let inaktiv = 0;
 let emails = 0;
 let headers: HeaderMap = {};
 let aktDbSheet: GoogleAppsScript.Spreadsheet.Sheet;
+let antwortSheet: GoogleAppsScript.Spreadsheet.Sheet;
 let entries: MapI2S = {};
 let antwortMap: MapS2I = {};
+let dbMap: MapS2I = {};
 
 let nachnameIndex: number; // Nachname
 let vornameIndex: number; // Vorname
@@ -35,16 +37,51 @@ let telefonAltIndex: number; // Telefon-Alternative
 let agsIndex: number; // AGs
 let interessenIndex: number; // Interessen
 let lastFirstAidIndex: number; // Letztes Erste-Hilfe-Training
-let registriertIndex: number; // Registriert für Erste-Hilfe-Training
+let nextFirstAidIndex: number; // Nächstes Erste-Hilfe-Training
+// let registriertIndex: number; // Registriert für Erste-Hilfe-Training
 let aktivIndex: number; // Aktiv
+let nowDate = any2Str(Date());
+
 
 
 function main() {
     init();
-    let nrRows = aktDbSheet.getLastRow() - 1; // first row = headers
-    let nrCols = aktDbSheet.getLastColumn();
-    let rows = aktDbSheet.getRange(2, 1, nrRows, nrCols).getValues();
-    for (let row of rows) { 
+    let nrAktdbRows = aktDbSheet.getLastRow() - 1; // first row = headers
+    let nrAktdbCols = aktDbSheet.getLastColumn();
+    let aktdbRows = aktDbSheet.getRange(2, 1, nrAktdbRows, nrAktdbCols).getValues();
+    for (let row of aktdbRows) { 
+      let name = row[nachnameIndex-1].trim() + "," + row[vornameIndex-1].trim(); // Nachname,Vorname
+      dbMap[name] = 1; 
+    }
+
+
+    let nrAntwortRows = antwortSheet.getLastRow() - 1; // first row = headers
+    let antwortRows = nrAntwortRows == 0 ? [] : antwortSheet.getRange(2, 1, nrAntwortRows, 3).getValues();
+    for (let row of antwortRows) { 
+      let name = row[1].trim() + "," + row[2].trim(); // Nachname,Vorname
+      if (antwortMap[name]) {
+        antwortMap[name] = antwortMap[name] + 1;
+      } else {
+        antwortMap[name] = 1; // Nachname,Vorname
+      }
+      if (!dbMap[name]) {
+        Logger.log("Antwortname %s nicht in der DB", name);
+      }
+    }
+
+    // antwortMap.size() returns always 0!
+    // https://stackoverflow.com/questions/54518951/how-to-find-the-size-of-map-in-javascript
+    let sz = 0;
+    for (const k in antwortMap) {
+      sz += 1;
+      let v = antwortMap[k];
+      if (v > 1) {
+        Logger.log("Doppelte Antwort %s: %d", k, v);
+      }
+    } 
+    Logger.log("Größe antwortMap %d", sz);
+
+    for (let row of aktdbRows) { 
         sendeEmail(row);
     }
     Logger.log("total %d antworten %d inaktiv %d emails %d", total, antworten, inaktiv, emails);
@@ -74,6 +111,7 @@ function init() {
             if (isEmpty(v)) continue;
             sheetHeaders[v] = i + 1;
         }
+        // Sheet aus AktivenDB mit Export erzeugt
         if (sheetName == "AktivenDB") {
             aktDbSheet = sheet;
             nachnameIndex = sheetHeaders["Nachname"];
@@ -89,7 +127,7 @@ function init() {
             agsIndex = sheetHeaders["AGs"];
             interessenIndex = sheetHeaders["Interessen"];
             lastFirstAidIndex = sheetHeaders["Letztes Erste-Hilfe-Training"];
-            registriertIndex = sheetHeaders["Registriert für Erste-Hilfe-Training"];
+            nextFirstAidIndex = sheetHeaders["Nächstes Erste-Hilfe-Training"];
             aktivIndex = sheetHeaders["Aktiv"]
 
             entries[nachnameIndex] = "entry.1985977124";
@@ -105,32 +143,12 @@ function init() {
             entries[agsIndex] = "entry.1781476495";
             entries[interessenIndex] = "entry.1674515812";
             entries[lastFirstAidIndex] = "entry.1254417615";
-            entries[registriertIndex] = "entry.285304371";
-            // entries[] = "entry.273898972"; // Einverstanden
+            entries[nextFirstAidIndex] = "entry.285304371"; 
+            // entries[] = "entry.273898972"; // Einverstanden mit Speicherung
             // entries[] = "entry.2103848384"; // Aktiv
         } 
-        if (sheetName == "Formularantworten 1") { 
-            let nrRows = sheet.getLastRow() - 1; // first row = headers
-            let rows = sheet.getRange(2, 1, nrRows, 3).getValues();
-            for (let row of rows) { 
-              let name = row[1].trim() + "," + row[2].trim(); // Nachname,Vorname
-              if (antwortMap[name]) {
-                antwortMap[name] = antwortMap[name] + 1;
-              } else {
-                antwortMap[name] = 1; // Nachname,Vorname
-              }
-            }
-            // antwortMap.size() returns always 0!
-            // https://stackoverflow.com/questions/54518951/how-to-find-the-size-of-map-in-javascript
-            let sz = 0;
-            for (const k in antwortMap) {
-              sz += 1;
-              let v = antwortMap[k];
-              if (v > 1) {
-                Logger.log("duplicate antwort %s: %d", k, v);
-              }
-            } 
-            Logger.log("size antwortMap %d", sz);
+        if (sheetName == "Formularantworten 1") {
+            antwortSheet = sheet;
         }
     }
 }
@@ -169,7 +187,6 @@ function sendeEmail(row: Array<string>) {
   Logger.log("emailTo %s = %s", name, emailTo);
 
   emails++;
-  if (phase == 1) return;
 
   let templateFile = "email.html";
 
@@ -178,6 +195,8 @@ function sendeEmail(row: Array<string>) {
   );
   template.anrede = "Liebe(r) " + vorname + " " + nachname;
   template.verifLink = verifLinkUrl + row2Params(row); // encodeURIComponent(verifLinkParams);
+  Logger.log("verifLink %s", template.verifLink);
+  if (phase == 1) return;
   let htmlText: string = template.evaluate().getContent();
   let subject = "Aktualisierung Deiner Daten in der AktivenDB";
   let textbody = "HTML only";
@@ -203,28 +222,43 @@ function any2Str(val: any): string {
 function row2Params(row: Array<string>) {
     let params = [];
     for (let idx = 1; idx <= row.length; idx++) {
-        if (idx > registriertIndex) continue; 
+        if (idx > nextFirstAidIndex) continue; 
+        let entry = entries[idx];
+        if (!entry) continue;
         let v = row[idx-1];
         if (isEmpty(v)) continue;
         Logger.log("row[%s] = %s %s", idx, v, typeof v);
-        if (idx == mitgliedsnrIndex) { // v = 12345.0, number
-            params.push("&" + entries[idx] + "=" + encodeURIComponent(v.toString()));
-        } else if (idx == registriertIndex) { // v = true, boolean
-            if (v) params.push("&" + entries[idx] + "=" + "ja/nein");
-        } else if (idx == agsIndex) { // v = "ag1,ag2,ag3"
-            let ags = v.split(",");
-            for (let ag of ags) {
-                ag = ag.trim();
-                if (isEmpty(ag)) continue;
-                params.push("&" + entries[idx] + "=" + encodeURIComponent(ag));
-            }
-        } else if (idx == lastFirstAidIndex) { // v = date
-            params.push("&" + entries[idx] + "=" + any2Str(v));
-        } else if (idx == telefonIndex || idx == telefonAltIndex) { // v = string, remove blank,-
-            params.push("&" + entries[idx] + "=" + any2Str(v).replace(/[\s-]/g, ""));
-        } else { // v = simple string or number param
-            if (typeof v != "number") v = v.trim();
-            params.push("&" + entries[idx] + "=" + encodeURIComponent(v));
+        if (idx == mitgliedsnrIndex) {
+          // v = 12345.0, number
+          params.push(
+            "&" + entry + "=" + encodeURIComponent(v.toString()),
+          );
+        } /* else if (idx == nextFirstAidIndex) { // v = true, boolean  
+            if (v) params.push("&" + entry + "=" + "ja/nein");
+        } */ else if (idx == agsIndex) {
+          // v = "ag1,ag2,ag3"
+          let ags = v.split(",");
+          for (let ag of ags) {
+            ag = ag.trim();
+            if (isEmpty(ag)) continue;
+            params.push("&" + entries[idx] + "=" + encodeURIComponent(ag));
+          }
+        } else if (idx == lastFirstAidIndex) {
+          // v = date
+          params.push("&" + entry + "=" + any2Str(v));
+        } else if (idx == nextFirstAidIndex) {
+          let ndate = any2Str(v);
+          if (ndate.length >= 10 && ndate <= nowDate) ndate = "";
+          params.push("&" + entry + "=" + ndate);
+        } else if (idx == telefonIndex || idx == telefonAltIndex) {
+          // v = string, remove blank,-
+          params.push(
+            "&" + entry + "=" + any2Str(v).replace(/[\s-]/g, ""),
+          );
+        } else {
+          // v = simple string or number param
+          if (typeof v != "number") v = v.trim();
+          params.push("&" + entry + "=" + encodeURIComponent(v));
         }     
     }
     let res = params.join("");
@@ -234,44 +268,7 @@ function row2Params(row: Array<string>) {
 
 // URL of user aktive:
 let verifLinkUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfDjK7m42eofskS164D2qTj8e-7ngHZeoiSgwsMWzB-AG-xfA/viewform?usp=pp_url";
-// URL of user mu:
-// let verifLinkUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdh7q00OHbeQdJ1ZMEy_LhXRPnMT3TJw-TeWcsVjZboWwJ2zA/viewform?usp=pp_url"
 
 /*
-let verifLink = "https://docs.google.com/forms/d/e/1FAIpQLSdh7q00OHbeQdJ1ZMEy_LhXRPnMT3TJw-TeWcsVjZboWwJ2zA/viewform?usp=pp_url&entry.1985977124=Nach+Name&entry.666565320=Vor+Name&entry.2076354113=email@adfc-muenchen.de&entry.440890410=email@t-online.de&entry.329829470=1234567&entry.1481160666=7654321&entry.1781476495=AG+Aktionen&entry.1781476495=AG+Asyl&entry.1781476495=Fundraising&entry.1674515812=Erstens+saufen,+zweitens+fressen&entry.1777914664=Kleine+Strasse+1,+34567+Klein-Kleckersdorf&entry.98896261=23456789&entry.1254417615=2017-01-08&entry.285304371=ja/nein&entry.1638875874=M&entry.931621781=1999&entry.273898972=Ja&entry.2103848384=Ja";
-
-https://docs.google.com/forms/d/e/1FAIpQLSdh7q00OHbeQdJ1ZMEy_LhXRPnMT3TJw-TeWcsVjZboWwJ2zA/viewform
-?usp=pp_url
-&entry.1985977124=Nach+Name
-&entry.666565320=Vor+Name
-&entry.2076354113=email@adfc-muenchen.de
-&entry.440890410=email@t-online.de
-&entry.329829470=1234567
-&entry.1481160666=7654321
-&entry.1781476495=AG+Aktionen
-&entry.1781476495=AG+Asyl
-&entry.1781476495=AG+Codierung
-&entry.1781476495=AG+Infoladen
-&entry.1781476495=AG+IT
-&entry.1781476495=AG+Leitungen
-&entry.1781476495=AG+Mehrtagestouren
-&entry.1781476495=AG+Navigation
-&entry.1781476495=AG+Radfahrschule
-&entry.1781476495=AG+Rikscha
-&entry.1781476495=AG+Tagestouren
-&entry.1781476495=AG+Tandem
-&entry.1781476495=AG+Technik
-&entry.1781476495=AG+Verkehr
-&entry.1781476495=Event+Team
-&entry.1781476495=Fundraising
-&entry.1781476495=AG+Landkreis
-&entry.1674515812=Erstens+saufen,+zweitens+fressen
-&entry.1777914664=Kleine+Stra%C3%9Fe+1,+34567+Klein-Kleckersdorf
-&entry.98896261=23456789
-&entry.1254417615=2017-01-08
-&entry.285304371=ja/nein
-&entry.1638875874=M
-&entry.931621781=1999
-&entry.273898972=Ja
-&entry.2103848384=Ja
+https://docs.google.com/forms/d/e/1FAIpQLSfDjK7m42eofskS164D2qTj8e-7ngHZeoiSgwsMWzB-AG-xfA/viewform?usp=pp_url&entry.1985977124=Nachname&entry.666565320=Vorname&entry.1638875874=M&entry.931621781=1111&entry.1777914664=2222&entry.2076354113=mail@adfc-muenchen.de&entry.440890410=mail@mail.de&entry.329829470=012345678&entry.1481160666=0987654321&entry.1781476495=AG+Aktionen&entry.1781476495=AG+Asyl&entry.1781476495=AG+Codierung&entry.1781476495=OG+Putzbrunn&entry.1781476495=OG+Stra%C3%9Flach-Dingharting&entry.1781476495=OG+Unterhaching&entry.1674515812=Interessen&entry.98896261=345678&entry.1254417615=2022-08-11&entry.285304371=1999-09-09&entry.273898972=Ja&entry.2103848384=Ja
 */
